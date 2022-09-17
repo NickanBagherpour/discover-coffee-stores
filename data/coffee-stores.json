@@ -1,0 +1,18 @@
+[
+  {
+    "id": 0,
+    "name": "StrangeLove Coffee",
+    "imgUrl": "https://api.lorem.space/image/drink?w=150&h=150&hash=8B7BCDC2",
+    "websiteUrl": "https://www.strangelovecoffee.ca/",
+    "address": "983 Queen St E, Toronto, ON M4M 1K2",
+    "neighbourhood": "at King and Spadina"
+  },
+  {
+    "id": 1,
+    "name": "Dark Horse Coffee",
+    "imgUrl": "https://api.lorem.space/image/drink?w=150&h=150&hash=500B67FB",
+    "websiteUrl": "https://www.darkhorseespresso.com/",
+    "address": "401 Richmond St W",
+    "neighbourhood": "Richmond and Spadina"
+  }
+]
