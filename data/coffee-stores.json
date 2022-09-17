@@ -14,5 +14,13 @@
     "websiteUrl": "https://www.darkhorseespresso.com/",
     "address": "401 Richmond St W",
     "neighbourhood": "Richmond and Spadina"
+  },
+  {
+    "id": 300,
+    "name": "Route 300",
+    "imgUrl": "https://api.lorem.space/image/drink?w=150&h=150&hash=A89D0DE6",
+    "websiteUrl": "https://www.darkhorseespresso.com/",
+    "address": "401 Richmond St W",
+    "neighbourhood": "Route 300 Neighbourhood"
   }
 ]

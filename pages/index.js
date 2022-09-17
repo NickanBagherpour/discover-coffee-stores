@@ -9,8 +9,6 @@ import coffeeStoresData from "../data/coffee-stores.json";
 
 export async function getStaticProps(context) {
 
-    console.log('hi getStaticProps');
-
     return {
         props: {
             coffeeStores: coffeeStoresData,
