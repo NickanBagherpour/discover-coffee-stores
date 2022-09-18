@@ -1,3 +1,4 @@
+import {useEffect} from "react";
 import Head from "next/head";
 import Image from "next/image";
 
@@ -25,6 +26,23 @@ const Home = (props) => {
         useTrackLocation();
 
     console.log({latLong, locationErrorMsg});
+
+    useEffect(() => {
+        setCoffeeStoresByLocation();
+    }, [latLong]);
+
+    async function setCoffeeStoresByLocation() {
+        if (latLong) {
+            try {
+                const fetchedCoffeeStores = await fetchCoffeeStores(latLong, 6);
+                console.log({fetchedCoffeeStores});
+                //set coffee stores
+            } catch (error) {
+                //set error
+                console.log("Error", {error});
+            }
+        }
+    }
 
     const handleOnBannerBtnClick = () => {
         handleTrackLocation();
