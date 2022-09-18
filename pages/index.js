@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import Head from "next/head";
 import Image from "next/image";
 
@@ -25,6 +25,9 @@ const Home = (props) => {
     const {handleTrackLocation, latLong, locationErrorMsg, isFindingLocation} =
         useTrackLocation();
 
+    const [coffeeStores, setCoffeeStores] = useState("");
+    const [coffeeStoresError, setCoffeeStoresError] = useState(null);
+
     console.log({latLong, locationErrorMsg});
 
     useEffect(() => {
@@ -34,12 +37,14 @@ const Home = (props) => {
     async function setCoffeeStoresByLocation() {
         if (latLong) {
             try {
-                const fetchedCoffeeStores = await fetchCoffeeStores(latLong, 6);
+                const fetchedCoffeeStores = await fetchCoffeeStores(latLong, 30);
                 console.log({fetchedCoffeeStores});
+                setCoffeeStores(fetchedCoffeeStores);
                 //set coffee stores
             } catch (error) {
                 //set error
-                console.log("Error", {error});
+                console.log({error});
+                setCoffeeStoresError(error.message);
             }
         }
     }
@@ -62,10 +67,32 @@ const Home = (props) => {
                     handleOnClick={handleOnBannerBtnClick}
                 />
                 {locationErrorMsg && <p>Something went wrong: {locationErrorMsg}</p>}
-
+                {coffeeStoresError && <p>Something went wrong: {coffeeStoresError}</p>}
                 <div className={styles.heroImage}>
                     <Image src="/static/hero-image.png" width={700} height={400}/>
                 </div>
+
+                {coffeeStores.length > 0 && (
+                    <div className={styles.sectionWrapper}>
+                        <h2 className={styles.heading2}>Stores near me</h2>
+                        <div className={styles.cardLayout}>
+                            {coffeeStores.map((coffeeStore) => {
+                                return (
+                                    <Card
+                                        key={coffeeStore.id}
+                                        name={coffeeStore.name}
+                                        imgUrl={
+                                            coffeeStore.imgUrl || ""
+                                        }
+                                        href={`/coffee-store/${coffeeStore.id}`}
+                                        className={styles.card}
+                                    />
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+
                 <div className={styles.sectionWrapper}>
                     {props.coffeeStores.length > 0 && (
                         <>
